@@ -31,16 +31,21 @@ svg
 // composed of the 4 small squares
 // which we call buttons
 function squareGridLayout(data, cellSide, gutter) {
-  gridSide = Math.ceil(Math.sqrt(data.length));
+  const gridSide = Math.ceil(Math.sqrt(data.length));
   console.log('gridSide', gridSide);
   let currentRow = 0;
+  let currentCol = 0;
   let rowOffset = 0;
   data.forEach((d, i) => {
-    d.x = gutter + (gutter + cellSide) * (i - currentRow);
-    d.y = gutter + (gutter + cellSide) * i;
-    if (i % gridSide === 0) currentRow += 1;
-    console.log(`i ${i} currentRow ${currentRow} mod ${i % gridSide}`)
-  })
+    d.x = gutter + (gutter + cellSide) * currentCol;
+    d.y = gutter + (gutter + cellSide) * currentRow;
+    // console.log(`i ${i} currentRow ${currentRow} currentCol ${currentCol}`);
+    console.log(`modRow ${i % gridSide} modCol ${(i + 1) % gridSide}`);
+    if (i % gridSide !== 0) currentRow += 1;
+    if ((i + 1) % gridSide !== 0) currentCol += 1;
+    else currentCol -= 1;
+    // console.log('d from squareGridLayout', d);
+  });
   return data;
 }
 
