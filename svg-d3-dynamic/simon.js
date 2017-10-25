@@ -4,7 +4,7 @@ const height = 500;
 const margin = { top: 10, left: 10, bottom: 10, right: 10 };
 const gutter = 10;
 
-const buttons = [
+const buttonsData = [
   { color: 'green' },
   { color: 'red' },
   { color: 'yellow' },
@@ -52,16 +52,16 @@ function squareGridLayout(data, cellSide, gutter) {
 }
 
 const xOffset = margin.left + baseSide;
-
+const yOffset = margin.top;
 const buttonSide = 100;
 const buttonsG = svg
   .append('g')
   .selectAll('rect')
-  .data(squareGridLayout(buttons, buttonSide, buttonSide))
+  .data(squareGridLayout(buttonsData, buttonSide, buttonSide))
   .enter()
   .append('rect')
   .attr('x', (d, i) => xOffset + d.x)
-  .attr('y', d => d.y)
+  .attr('y', d => yOffset + d.y)
   .attr('width', buttonSide)
   .attr('height', buttonSide)
   .style('fill', d => d.color);
