@@ -31,6 +31,8 @@ svg
 // composed of the 4 small squares
 // which we call buttons
 function squareGridLayout(data, cellSide, gutter) {
+  // if no gutter is specified, use zero gutter
+  gutter = gutter || 0;
   const gridSide = Math.ceil(Math.sqrt(data.length));
   console.log('gridSide', gridSide);
   let currentRow = 0;
@@ -55,7 +57,7 @@ const buttonSide = 100;
 const buttonsG = svg
   .append('g')
   .selectAll('rect')
-  .data(squareGridLayout(buttons, buttonSide, gutter))
+  .data(squareGridLayout(buttons, buttonSide, buttonSide))
   .enter()
   .append('rect')
   .attr('x', (d, i) => xOffset + d.x)
