@@ -18,11 +18,12 @@ const svg = d3
   .attr('width', width);
 
 // draw the large square
-const baseSide = 500;
+const baseSide = 440;
+const yOffsetBase = 20;
 svg
   .append('rect')
   .attr('x', margin.left)
-  .attr('y', margin.top)
+  .attr('y', yOffsetBase + margin.top)
   .attr('width', baseSide)
   .attr('height', baseSide)
   .style('fill', 'black');
