@@ -101,7 +101,9 @@ var squareVertexColorBuffer;
 function initBuffers() {
   squareVertexPositionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-  vertices = [1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, -1.0, -1.0, 0.0];
+
+  // the size of the square
+  vertices = [2.5, 2.5, 0.0, -2.5, 2.5, 0.0, 2.5, -2.5, 0.0, -2.5, -2.5, 0.0];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
   squareVertexPositionBuffer.itemSize = 3;
   squareVertexPositionBuffer.numItems = 4;
@@ -110,7 +112,8 @@ function initBuffers() {
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
   colors = [];
   for (var i = 0; i < 4; i++) {
-    colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
+    // the color of the square
+    colors = colors.concat([0.0, 0.0, 0.0, 1.0]);
   }
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
   squareVertexColorBuffer.itemSize = 4;
@@ -133,7 +136,8 @@ function drawScene() {
 
   mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
 
-  mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+  // the position of the square
+  mat4.translate(mvMatrix, [-1.4, 0.0, 0.0]);
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
   gl.vertexAttribPointer(
     shaderProgram.vertexPositionAttribute,
